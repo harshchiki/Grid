@@ -17,11 +17,13 @@ var Grid =
 	'SearchBarHtml':function()
 	{
 		var SearchBarHTML = '';
+		SearchBarHTML += "<div class='SearchBar'>";
 		SearchBarHTML += '<label class="Label">Search:&nbsp;&nbsp;</label>';
-		SearchBarHTML += '<input type="text" id="SearchTextBox" placeholder="Enter text to search..." class="TextBox"></input>';
-		SearchBarHTML += '<input type="button" id="SearchButton" value="Search" class="Button"></input>';
+		SearchBarHTML += '<input type="text" id="SearchTextBox" style="width:30%;" placeholder="Enter text to search..." class="TextBox"></input>&nbsp;&nbsp;&nbsp;';
+		SearchBarHTML += '<input type="button" id="SearchButton" value="Search" class="Button"></input>&nbsp;';
 		SearchBarHTML += '<input type="button" id="ClearButton" value="Clear" class="Button"></input>';
 		SearchBarHTML += '<input type="button" id="RefreshButton" value="Refresh" class="Button" style="float:right;"></input>'
+		SearchBarHTML += "</div>";
 		SearchBarHTML += '<br />';
 		return SearchBarHTML;
 	},
@@ -225,8 +227,3 @@ var Grid =
 
 	
 }
-
-
-
-
-
