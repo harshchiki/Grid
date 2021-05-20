@@ -17,7 +17,7 @@
 
 .HeaderRow
 {
-	font-size:12px;
+	font-size:16px;
 }
 
 .ColumnHeader
@@ -37,7 +37,7 @@ background-color:rgb(235,235,235);
 
 .Row
 {	
-	font-size:11px;
+	font-size:14px;
 }
 
 .EvenRow
@@ -52,8 +52,9 @@ background-color: :rgb(240,240,240);
 
 .RowCell
 {
-	padding:3px;
-	text-align:center;
+	padding:15px;
+	text-align:justify;
+	line-height:20px;
 }
 
 .Cell
@@ -129,14 +130,4 @@ background-color: :rgb(240,240,240);
 {
 	padding:0px !important;
 	width:1%;
-}
-
-.BottomRow
-{
-	background-color: :red;
-}
-
-.BottomCell
-{
-	background-color: :red;
 }

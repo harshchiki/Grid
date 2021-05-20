@@ -67,9 +67,12 @@ var Grid =
 				html += '<tr class="Row OddRow" rowIndex="'+i+'">';
 			}
 
-			html += '<td class="RowCell Cell">';
-			html += '<input type="checkbox" class="CheckBox" id="ChkRow_'+i+'"></input>';
-			html += '</td>';
+			if(Grid.IsCheckBoxRequired == true)
+			{
+				html += '<td class="RowCell Cell">';
+				html += '<input type="checkbox" class="CheckBox" id="ChkRow_'+i+'"></input>';
+				html += '</td>';
+			}
 
 			$(e).each(function(index,element){
 				html += '<td class="RowCell Cell" cellIndex="'+index+'">';
