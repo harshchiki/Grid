@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	Grid.IsCheckBoxRequired = true;
+	Grid.IsCheckBoxRequired = false;
 
 	Grid.GridData.rows = [
    [

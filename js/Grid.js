@@ -1,3 +1,9 @@
+/*
+Grid -> Controller
+Grid.GridData.rows -> Model
+Grid.ViewType = Desktop/Mobile - (to be added)
+
+*/
 var Grid = 
 {
 	
@@ -67,9 +73,11 @@ var Grid =
 				html += '<tr class="Row OddRow" rowIndex="'+i+'">';
 			}
 
-			html += '<td class="RowCell Cell">';
-			html += '<input type="checkbox" class="CheckBox" id="ChkRow_'+i+'"></input>';
-			html += '</td>';
+			if( Grid.IsCheckBoxRequired) {
+				html += '<td class="RowCell Cell">';
+				html += '<input type="checkbox" class="CheckBox" id="ChkRow_'+i+'"></input>';
+				html += '</td>';
+			}
 
 			$(e).each(function(index,element){
 				html += '<td class="RowCell Cell" cellIndex="'+index+'">';
@@ -78,11 +86,22 @@ var Grid =
 			});
 			html += '</tr>';
 		});
+		// table rendered
 
+		
 		//html+= '<tr class="BottomRow"><td class="BottomCell" colspan="'+Grid.GridData.cols.Length+'">&nbsp;</td></tr>';
 
 		html += '</table>';
-
+		// add for pagination
+		html += "<div class=\"pagination\">";
+		html += "<a href=\"#\">&laquo;</a>";
+		
+		var pageCount = $(Grid.GridData.rows).length/10;
+		for(i = 0;i<pageCount;i++) {
+			html += "<a href=\"#\">" + (i+1) + "</a>";
+		}
+		html += "<a href=\"#\">&raquo;</a>";
+		html += "</div>";
 		$('#'+id).html(html);
 		try
 		{
@@ -93,10 +112,12 @@ var Grid =
 			console.log('error in attaching handlers');
 			console.log(err.message);
 		}
+
+		
+
 	},
-	'AttachHandlers':function(){
-		$('#SearchButton').click(function(e){
-			$('#SearchButton').attr('class','ButtonSearchOn');
+	'initSearch': function() {
+		$('#SearchButton').attr('class','ButtonSearchOn');
 
 			try
 			{
@@ -109,6 +130,17 @@ var Grid =
 			}
 
 			return false;
+	},
+	'AttachHandlers':function(){
+		$("#SearchTextBox").on('keypress',function(e) {
+			// pressed Enter key
+			if(e.which == 13) {
+				Grid.initSearch();
+			}
+		});
+		
+		$('#SearchButton').click(function(e){
+			Grid.initSearch();
 		});
 
 		$('#ClearButton').click(function(e){
@@ -192,11 +224,11 @@ var Grid =
 	},
 	'Search':function(p_SearchText)
 	{
-		$('td.RowCell').each(function(i,e){
-			if($(e).html().indexOf(p_SearchText) != -1)
-			{
-				$(e).css('background-color','#FFFFBA');
-				$(e).css('font-weight','bold');
+		$("tr.Row").each(function(iRow, eRow){
+			if($(eRow).html().indexOf(p_SearchText) != -1) {
+				$(eRow).show();
+			} else {
+				$(eRow).hide();
 			}
 		});
 	},
